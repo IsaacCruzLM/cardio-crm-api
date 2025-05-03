@@ -11,12 +11,12 @@ export class CreateUserDto {
   email: string;
 
   @IsNotEmpty()
-  password: string;
+  senha: string;
 
   @IsEnum(TipoUsuario)
-  tipo_usuario: TipoUsuario;
+  tipo: TipoUsuario;
 
-  @ValidateIf((obj) => obj.tipo_usuario === TipoUsuario.MEDICO)
+  @ValidateIf((obj) => obj.tipo === TipoUsuario.MEDICO)
   @IsNotEmpty({ message: 'CRM é obrigatório para médicos' })
   crm?: string;
 }

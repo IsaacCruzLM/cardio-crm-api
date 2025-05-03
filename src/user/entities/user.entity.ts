@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert, CreateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import { TipoUsuario } from '../enums/tipo-usuario.enum';
@@ -9,25 +9,28 @@ export class User {
   id: number;
 
   @Column()
-  name: string;
+  nome: string;
 
   @Column({ unique: true })
   email: string;
 
   @Column()
-  password: string;
+  senha: string;
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
+    this.senha = await bcrypt.hash(this.senha, 10);
   }
 
   @Column({
     type: 'text',
     enum: TipoUsuario,
   })
-  tipo_usuario: TipoUsuario;
+  tipo: TipoUsuario;
 
   @Column({ type: 'text', nullable: true })
   crm: string | null;
+
+  @CreateDateColumn({ name: 'criado_em' })
+  criado_em: Date; 
 }
