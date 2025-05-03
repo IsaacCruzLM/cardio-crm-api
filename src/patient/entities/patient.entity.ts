@@ -17,14 +17,24 @@ export class Patient {
   @Column()
   nome: string;
 
+  @Column({ type: 'varchar', length: 14, unique: true, nullable: false })
+  cpf: string;
+
   @Column({ type: 'date' })
   data_nascimento: Date;
+
+  @Column({ type: 'varchar', length: 15, nullable: true })
+  telefone: string;
 
   @Column({
     type: 'text',
     enum: Sexo,
+    nullable: true
   })
   sexo: Sexo;
+
+  @Column({ type: 'text', nullable: true })
+  endereco: string;
 
   @Column({ type: 'text', nullable: true })
   historico_medico: string;

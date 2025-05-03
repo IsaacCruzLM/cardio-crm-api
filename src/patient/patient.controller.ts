@@ -13,7 +13,7 @@ import { UserJwtPayload } from 'src/auth/jwt.strategy';
 import { User } from 'src/common/decorators/user.decorator';
 import { UpdatePatientDto } from 'src/patient/dto/update-patient.dto';
 
-@Controller('patients')
+@Controller('pacientes')
 export class PatientController {
   constructor(private readonly patientService: PatientService) {}
 
